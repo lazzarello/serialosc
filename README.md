@@ -46,7 +46,7 @@ To install to a system wide location
 
 ## Extending
 
-Adding support for a new OSC device to serialosc is easy!
+Adding new OSC functions to serialosc is easy!
 
 Add callback functions in `serialosc-device/server.c` to handle messages from your device with the following signature
 
@@ -64,4 +64,6 @@ int monome_register_handler(monome_t *monome, monome_event_type_t event_type,
 ## Device Discovery
 
 Registering a device to serialosc works like this?
+
+While extending functionality of a device is easy, registering a new device is hard.
 
