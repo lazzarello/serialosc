@@ -41,6 +41,12 @@ OSC_HANDLER_FUNC(led_set_handler)
 	return monome_led_set(monome, argv[0]->i, argv[1]->i, !!argv[2]->i);
 }
 
+OSC_HANDLER_FUNC(dtr_led_set_handler)
+{
+	monome_t *monome = user_data;
+	return monome_led_set(monome, argv[0]->i, argv[1]->i, !!argv[2]->i);
+}
+
 OSC_HANDLER_FUNC(led_all_handler)
 {
 	monome_t *monome = user_data;
@@ -288,6 +294,9 @@ osc_register_methods(sosc_state_t *state)
 
 	METHOD("tilt/set")
 		REGISTER("ii", tilt_set_handler);
+
+        METHOD("dtr/led/set")
+                RGISTER("iii", dtr_led_set_handler);
 
 #undef REGISTER
 }

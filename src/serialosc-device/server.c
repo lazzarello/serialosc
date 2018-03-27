@@ -273,6 +273,12 @@ sosc_server_run(const char *config_dir, monome_t *monome)
 #endif
 
 #define HANDLE(ev, cb) monome_register_handler(state.monome, ev, cb, &state)
+        HANDLE(DTR_BUTTON_DOWN, handle_press);
+        HANDLE(DTR_BUTTON_UP, handle_press);
+        HANDLE(DTR_KNOB, handle_knob);
+        HANDLE(DTR_JACK_INPUT, handle_jack_input);
+        HANDLE(DTR_JACK_OUTPUT, handle_jack_output);
+        HANDLE(DTR_JACK_IS_PATCHED, handle_jack_patched);
 	HANDLE(MONOME_BUTTON_DOWN, handle_press);
 	HANDLE(MONOME_BUTTON_UP, handle_press);
 	HANDLE(MONOME_ENCODER_DELTA, handle_enc_delta);
