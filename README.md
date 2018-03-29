@@ -48,6 +48,8 @@ To install to a system wide location
 
 Adding new OSC functions to serialosc is easy!
 
+### Device output
+
 Add callback functions in `serialosc-device/server.c` to handle messages from your device with the following signature
 
 ```
@@ -60,6 +62,10 @@ Register the function with the following interface defined in `libmonome/public/
 int monome_register_handler(monome_t *monome, monome_event_type_t event_type,
                             monome_event_callback_t, void *user_data);
 ```
+
+### Device Input
+
+Register your functions in `serialosc-device/osc/mext_methods.c`
 
 ## Device Discovery
 
