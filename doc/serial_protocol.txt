@@ -182,9 +182,26 @@ serial:		if d = 0 [0x51 n] key up
 			if d = 1 [0x52 n] key down
 args:		n = encoder number
 
+// knob
 
+pattern:        /prefix/knob n f[2]
+desc:           An absolutely positioned knob like a potentiomer
+serial:         [0x53, n, f[2]]
+args:           n = knob number, f = two byte value can work with up to 16bit ADC
 
+// jacks (a matrix of patch jacks)
 
+pattern:        /prefix/jack/connect x, y, s
+desc:           A connection between two points in a patch grid
+serial:         [0x02, x, y, s]
+args:           x = the index of point 1, y = index of point 2, s = state (connected/disconnected)
+
+pattern:        /prefix/jack/state
+desc:           Send the state of all connections in the network
+serial:         [0x02, s]
+args:           s = state of all connections in the grid, i.e. for a 2x2 patchbay [2,1,1,3]
+                which can be read as jack1 is connected to jack2, jack2 is connected to jack1
+                jack3 is connected to jack1, jack4 is connected to jack3
 
 monome protocol
 ---------------
@@ -221,7 +238,7 @@ first byte of packet is identifier in the form:
 
 [(a << 4) + b]
 
-a = section (ie. system, key-grid, digital, encoder, led grid, tilt)
+a = section (ie. system, key-grid, digital, encoder, led grid, tilt, knob, jack)
 b = command (ie. query, enable, led, key, frame)
 
 
